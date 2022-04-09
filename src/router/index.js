@@ -66,8 +66,8 @@ router.beforeEach(async (to, from, next)=>{
                     next()
                 } catch (error) {
                     // token失效，重新登录
-                    await store.dispatch('getLogin')
-                    next()
+                    await store.dispatch('getLogout')
+                    next('/login')
                 }
             }
         }

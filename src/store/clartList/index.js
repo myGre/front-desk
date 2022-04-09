@@ -26,11 +26,17 @@ const actions = {
     // 删除选中的商品
     deleteCartListAll(context) {
         let promiseAll = []
-        let promise = context.getters.getCart.cartInfoList.forEach(item => {
-            // 如果 isChecked ==1 则派发deleteCartList
-            item.isChecked == 1 ? context.dispatch('deleteCartList', item.skuId) : ''
+        // 方法一，有bug
+        // let promise = context.getters.getCart.cartInfoList.forEach(item => {
+        //     // 如果 isChecked ==1 则派发deleteCartList
+        //     item.isChecked == 1 ? context.dispatch('deleteCartList', item.skuId) : ''
+        //     promiseAll.push(promise)
+        // })
+        const goods = context.getters.getCart.cartInfoList
+        for (let index = goods.length -1; index >= 0; index--) {
+            let promise = goods[index].isChecked == 1 ? context.dispatch('deleteCartList', goods[index].skuId): ''
             promiseAll.push(promise)
-        })
+        }
         // 如果数组里面全部成功，则返回成功，有一个失败则返回失败
         return Promise.all(promiseAll)
     },

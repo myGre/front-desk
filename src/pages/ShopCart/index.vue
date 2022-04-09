@@ -84,15 +84,7 @@
         <span>全选</span>
       </div>
       <div class="option">
-        <el-popconfirm
-          confirm-button-text="删除"
-          cancel-button-text="取消"
-          icon="el-icon-info"
-          icon-color="red"
-          @confirm="deleteCartList(shop)"
-        >
-          <el-button type="text" slot="reference">删除选中的商品</el-button>
-        </el-popconfirm>
+          <el-button type="text" @click="deleteCartList(shop)" slot="reference">删除选中的商品</el-button>
         <!-- <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a> -->
       </div>
